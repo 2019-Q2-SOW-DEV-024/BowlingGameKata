@@ -107,4 +107,10 @@ public class BowlingGameTest {
 	private void rollStrike() {
 		  game.roll(10);
 	}
+	
+	@Test
+	public void testGameScoreWhenAllRollsAreStrike() {
+		rollPins(12,10);
+	    assertEquals(300, game.calculateScore());
+	  }
 }
