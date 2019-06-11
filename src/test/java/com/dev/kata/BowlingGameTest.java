@@ -76,4 +76,21 @@ public class BowlingGameTest {
 	private void rollMiss() {
 		game.roll(0);
 	}
+	
+	@Test
+	public void testGameScoreWhenAllRollsAreSpare() {
+		rollPins(21, 5);
+
+		assertEquals(150, game.calculateScore());
+	}
+	
+	@Test
+	public void testGameScoreWhenMultipleSpareOccur() {
+		rollPins(16,2);
+		rollSpare(5);
+		rollSpare(2);
+		game.roll(5);
+
+		assertEquals(59, game.calculateScore());
+	}
 }
