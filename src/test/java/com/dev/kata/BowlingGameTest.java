@@ -20,6 +20,26 @@ public class BowlingGameTest {
 		 game = new BowlingGame();
 	}
 	
+	private void rollPins(int roll,int pins) {
+		
+		for(int index=0;index<roll;index++) {
+			game.roll(pins);
+		}
+	}
+	private void rollMiss() {
+		game.roll(0);
+	}
+	private void rollSpare(int pins) {
+		game.roll(pins);
+		game.roll(10-pins);
+	}
+	private void rollStrike() {
+		  game.roll(10);
+	}
+	private void rollBonus(int pins) {
+		  game.roll(pins);
+	}
+	
 	@Test
 	public void testGameScoreForGutterBalls() {
 		rollPins(20,0);
@@ -33,13 +53,6 @@ public class BowlingGameTest {
 
 		assertEquals(40, game.calculateScore());
 	}	
-	
-	private void rollPins(int roll,int pins) {
-		
-		for(int index=0;index<roll;index++) {
-			game.roll(pins);
-		}
-	}
 	
 	@Test
 	public void testGameScoreWhenRollsAreMiss() {
@@ -63,18 +76,9 @@ public class BowlingGameTest {
 	public void testGameScoreWhenSpareLastRoll() {
 		rollPins(18,2);
 		rollSpare(5);
-		game.roll(2);
+		rollBonus(2);
 
 		assertEquals(48, game.calculateScore());
-	}
-	
-	private void rollSpare(int pins) {
-		game.roll(pins);
-		game.roll(10-pins);
-	}
-
-	private void rollMiss() {
-		game.roll(0);
 	}
 	
 	@Test
@@ -89,7 +93,7 @@ public class BowlingGameTest {
 		rollPins(16,2);
 		rollSpare(5);
 		rollSpare(2);
-		game.roll(5);
+		rollBonus(5);
 
 		assertEquals(59, game.calculateScore());
 	}
@@ -102,10 +106,6 @@ public class BowlingGameTest {
 		rollPins(16,2);
 
 		assertEquals(58, game.calculateScore());
-	}
-	
-	private void rollStrike() {
-		  game.roll(10);
 	}
 	
 	@Test
@@ -124,12 +124,13 @@ public class BowlingGameTest {
 
 		assertEquals(45, game.calculateScore());
 	  }
+	
 	@Test
 	public void testGameScoreWhenTenthFrameHasStrike() {
 		rollPins(18,1);
 		rollStrike();
-		game.roll(2);
-		game.roll(4);
+		rollBonus(2);
+		rollBonus(4);
 
 		assertEquals(34, game.calculateScore());
 	}
