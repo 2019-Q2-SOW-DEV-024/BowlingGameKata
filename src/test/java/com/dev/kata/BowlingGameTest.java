@@ -124,4 +124,13 @@ public class BowlingGameTest {
 
 		assertEquals(45, game.calculateScore());
 	  }
+	@Test
+	public void testGameScoreWhenTenthFrameHasStrike() {
+		rollPins(18,1);
+		rollStrike();
+		game.roll(2);
+		game.roll(4);
+
+		assertEquals(34, game.calculateScore());
+	}
 }
