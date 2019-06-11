@@ -32,7 +32,7 @@ public class BowlingGameTest {
 		rollPins(20,2);
 
 		assertEquals(40, game.calculateScore());
-	}
+	}	
 	
 	private void rollPins(int roll,int pins) {
 		
@@ -92,5 +92,15 @@ public class BowlingGameTest {
 		game.roll(5);
 
 		assertEquals(59, game.calculateScore());
+	}
+	
+	@Test
+	public void testGameScoreWhenOneStrikeInGame() {
+		game.roll(10);
+		game.roll(5);
+		game.roll(3);
+		rollPins(16,2);
+
+		assertEquals(58, game.calculateScore());
 	}
 }
