@@ -11,17 +11,21 @@ public class BowlingGame {
 	public int calculateScore() {
 		int score = 0;
 		int rollIndex = 0;
+		
 	    for (int frame = 0; frame < 10; frame++) {
-	      if (rolls[rollIndex] + rolls[rollIndex + 1] == 10)
+	      if (isSpare(rollIndex))
 	      {
 	        score += 10 + rolls[rollIndex + 2];
 	      } else {
 	        score += rolls[rollIndex] + rolls[rollIndex + 1];
-
 	      }
 	      rollIndex += 2;
 	    }
 	    return score;
+	}
+	
+	private boolean isSpare(int rollIndex) {
+	    return rolls[rollIndex] + rolls[rollIndex + 1] == 10;
 	}
 
 }
