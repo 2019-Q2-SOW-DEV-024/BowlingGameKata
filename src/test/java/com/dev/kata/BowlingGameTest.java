@@ -113,4 +113,15 @@ public class BowlingGameTest {
 		rollPins(12,10);
 	    assertEquals(300, game.calculateScore());
 	  }
+	
+	@Test
+	public void testGameScoreWhenStrikeSpareMiss() {
+
+		rollStrike();
+		rollSpare(5);
+		rollMiss();
+		rollPins(15,1);
+
+		assertEquals(45, game.calculateScore());
+	  }
 }
