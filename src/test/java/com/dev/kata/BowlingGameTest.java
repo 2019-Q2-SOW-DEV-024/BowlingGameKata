@@ -59,4 +59,14 @@ public class BowlingGameTest {
 
 		assertEquals(58, game.calculateScore());
 	}
+	
+	@Test
+	public void testGameScoreWhenSpareLastRoll() {
+		rollPins(18,2);
+		game.roll(5);
+		game.roll(5);
+		game.roll(2);
+
+		assertEquals(48, game.calculateScore());
+	}
 }
